@@ -1,0 +1,102 @@
+
+stock = {}
+
+while True:
+    print("\t-~Bienvenido al stock~-\n")
+
+    menu1= int(input('''Seleccione una de las opciones:\n
+1-Mirar inventario
+2-Agregar item
+3-Borrar item
+4-Editar inventario
+5-Salir
+\nDigite su opcion: '''))
+    
+    if menu1 == 1:
+        print("\nHas seleccionado mirar inventario\n")
+        print(stock)
+        continue
+
+    elif menu1 == 2:
+        nombre= str(input("Nombre del producto: ")).strip()
+        if nombre == "":
+            print("El nombre no puede estar vacio!")
+            continue
+        
+        precio_texto = input("Precio del producto (ej: 20.000): ").strip()
+        precio_limpio = precio_texto.replace(".", "")
+        if not precio_limpio.isdigit():
+            print("ERROR precio inválido")
+            continue
+        precio= int(precio_limpio)
+
+        producto= {"nombre":nombre,"precio":precio}
+
+        stock[producto["nombre"]]=producto
+
+        print(f"\nSe ha agregado {nombre}, con un precio de {precio_texto}!\n")
+
+    elif menu1 == 3:
+        print("\nQue producto desea eliminar?\n")
+        if not stock:
+            print("El inventario esta vacio.")
+            continue
+        
+        print("Productos disponibles:")
+        for nombre in stock:
+            print(f"-{nombre}")
+
+        borrar = input("\nIngrese el nombre del producto a eliminar: ").strip()
+
+        if borrar == "":
+            print("Debes escribir algo en el nombre!")
+            continue
+
+        if borrar in stock:
+            del stock[borrar]
+            print(f"\nEl producto {borrar}, fue eliminado.\n")
+
+        else:
+            print("\nEse producto no se encuentra en el inventario")
+
+
+    elif menu1 == 4:
+        print("\nQue producto desea modificar?\n")
+
+        if not stock:
+            print("No hay productos en el inventario")
+            continue
+
+        print("Productos disponibles:")
+        for nombre in stock:
+            print(f"-{nombre}")
+
+        producto= input("Ingrese el nombre del producto: ").strip()
+
+        if producto == "":
+            print("Debes escribir algo en el nombre!")
+            continue
+
+        if producto not in stock:
+            print("No existe ese producto en el inventario!")
+            continue
+
+        precio_texto= input("Nuevo precio (ej: 20.000): ").strip()
+        precio_limpio= precio_texto.replace(".","")
+
+        if not precio_limpio.isdigit():
+            print("ERROR precio invalido!")
+            continue
+
+        nuevo_precio= int(precio_limpio)
+
+        stock[producto]["precio"] = nuevo_precio
+
+        print(f"\nPrecio de '{producto}' actualizado a {precio_texto}\n")
+    
+    elif menu1 == 5:
+        break
+
+    else:
+        print("\nERROR opcion invalida!\n")
+        continue
