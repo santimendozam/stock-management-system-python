@@ -34,3 +34,9 @@ No external libraries required — runs on pure Python 3.
 
 This project was built to apply core programming fundamentals:
 loops, conditionals, dictionaries, input validation, and string handling.
+
+## 🗺️ Roadmap
+
+- [ ] Track quantity per product (real stock control)
+- [ ] Migrate persistence to SQLite
+- [ ] Refactor to Object-Oriented Programming (OOP)
